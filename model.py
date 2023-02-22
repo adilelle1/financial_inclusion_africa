@@ -9,6 +9,7 @@ import streamlit.components.v1 as html
 
 #1. Import
 df = pd.read_csv('Train.csv')
+df.drop(columns=['uniqueid', 'year'],inplace=True)
 
 #2. Sidebar
 with st.sidebar:
