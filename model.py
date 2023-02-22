@@ -56,7 +56,7 @@ elif selected == 'Plots':
     st.title('Plots')
 
     #countplot
-    col_countplot = st.sidebar.selectbox('Countplot column',['country','location_type','household_size','relationship_with_head','marital_status','education_level','job_type'])
+    col_countplot = st.sidebar.selectbox('Countplot column',['country','location_type', 'age_of_respondent','household_size','relationship_with_head','marital_status','education_level','job_type'])
     def graf_hist():
         fig = px.histogram(df, x= col_countplot, color= col_countplot, color_discrete_sequence=px.colors.qualitative.Set2).update_xaxes(categoryorder='total descending')
         fig.update_layout(
@@ -99,7 +99,7 @@ elif selected == 'Plots':
         st.plotly_chart(fig)
 
     # boxplot
-    col_box_plot = st.sidebar.selectbox('Countplot column',[df.columns])
+    col_box_plot = st.sidebar.selectbox('Countplot column',['age_of_respondent','household_size'])
     def boxplot():
         fig = px.box(df, x=col_box_plot)
         fig.update_layout(
