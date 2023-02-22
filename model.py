@@ -13,16 +13,21 @@ import plotly.express as px
 df = pd.read_csv('Train.csv')
 df.drop(columns=['uniqueid', 'year'],inplace=True)
 
-#2. Sidebar
+#2. Titulo de pagina
+st.set_page_config(page_title="Financial inclusion prediction App")
+
+#3. Sidebar
 with st.sidebar:
     selected = option_menu(
-        menu_title='Main menu',
+        menu_title='Menu',
         options=['Home', 'Plots', 'Model backstage', 'Model trial'],
     )
 
 # Pagina 1 = Home
 if selected == 'Home':
-    st.title('Bienvenidos a Financial inclusion!')
+    st.title('Financial inclusion in Africa')
+    st.write('Predict who in Africa is most likely to have a bank account')
+
 
     st.header('Problemática')
     st.write('La inclusión financiera refiere al acceso que tienen las personas y las empresas a diversos productos y servicios financieros útiles y asequibles que atienden sus necesidades. Representa una preocupación global, ya que se considera como elemento facilitador para reducir la pobreza extrema y promover el crecimiento y desarrollo económico.')
@@ -58,7 +63,7 @@ elif selected == 'Plots':
     #histplot
     col_histplot = st.sidebar.selectbox('Histplot column',['country','location_type', 'age_of_respondent','household_size','relationship_with_head','marital_status','education_level','job_type'])
     def graf_hist():
-        fig = px.histogram(df, x= col_histplot, y= 'bank_account', color=col_histplot, color_discrete_sequence=px.colors.qualitative.Set2).update_xaxes(categoryorder='total descending')
+        fig = px.histogram(df, x= col_histplot, color=col_histplot, color_discrete_sequence=px.colors.qualitative.Set2).update_xaxes(categoryorder='total descending')
         fig.update_layout(
             autosize=False,
             width=1000,
@@ -164,7 +169,11 @@ elif selected == 'Model backstage':
             moodel_scores_data = pd.read_csv('model_scores.csv', index_col='Unnamed: 0')
             return st.dataframe(moodel_scores_data)
         print_model_scores()
-        
+
+        st.write('Matriz de confusión:')
+        st.image('heatmap.png')
+
+
         st.write('curva ROC-AUC:')
         st.image('roc_auc.png')
 
