@@ -28,7 +28,9 @@ if selected == 'Home':
     st.write('En África, la incusión financiera constituye uno de los principales problemas, ya que en una población compuesta de alrededor de 172,19 millones de personas (The World Bank Group , 2020) en 4 países (Kenia, Ruanda, Tanzania y Uganda), solo el 14% de la población adulta, representada por 9,1 millones, tiene este acceso (Zindi).')
     st.write('Por esta razón, la Nueva Alianza para el Desarrollo de África (NEPAD) ha involucrado a representantes del continente para encontrar soluciones que podrían mejorar la inclusión financiera y el bienestar de las personas que viven en África, utilizando el modelo empresarial cooperativo.')
     
-    st.write('Vamos a trabajar con un dataset de inclusion financiera en africa')
+    st.write('El conjunto de datos utilizado, ha sido extraído de Zindi, una red profesional para científicos de datos en África; constituyen los resultados de las encuestas de Finscope de 2016 a 2018.')
+    st.hyperlink('https://zindi.africa/competitions/financial-inclusion-in-africa')
+
     st.write("A continuacion podemos ver como esta compuesto el set de datos")
     st.dataframe(df.head())
 
