@@ -56,16 +56,16 @@ elif selected == 'Plots':
     st.title('Plots')
 
     #histplot
-    col_countplot = st.sidebar.selectbox('Histplot column',['country','location_type', 'age_of_respondent','household_size','relationship_with_head','marital_status','education_level','job_type'])
+    col_histplot = st.sidebar.selectbox('Histplot column',['country','location_type', 'age_of_respondent','household_size','relationship_with_head','marital_status','education_level','job_type'])
     def graf_hist():
-        fig = px.histogram(df, x= col_countplot, color= 'bank_account', color_discrete_sequence=px.colors.qualitative.Set2).update_xaxes(categoryorder='total descending')
+        fig = px.histogram(df, x= col_histplot, y= 'bank_account', color=col_histplot, color_discrete_sequence=px.colors.qualitative.Set2).update_xaxes(categoryorder='total descending')
         fig.update_layout(
             autosize=False,
             width=1000,
             height=600,
             bargap= 0.2,
             title={
-                'text': (f'Distribución: {col_countplot}'),
+                'text': (f'Distribución: {col_histplot}'),
                 'y':0.95,
                 'x':0.5,
                 'xanchor': 'center',
