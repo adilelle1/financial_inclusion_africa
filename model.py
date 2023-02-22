@@ -66,7 +66,7 @@ elif selected == 'Plots':
     #     st.pyplot(fig)
 
     def graf_hist():
-        fig = px.histogram(df[col_countplot], color_discrete_sequence=px.colors.qualitative.Set2).update_xaxes(categoryorder='total descending')
+        fig = px.histogram(df[col_countplot], color=col_countplot, color_discrete_sequence=px.colors.qualitative.Set2).update_xaxes(categoryorder='total descending')
         fig.update_layout(
             autosize=False,
             width=1000,
