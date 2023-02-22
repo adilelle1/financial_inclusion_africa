@@ -1,0 +1,6 @@
+sklearn
+scikit-learn
+matplotlib
+seaborn
+streamlit
+streamlit_option_menu
