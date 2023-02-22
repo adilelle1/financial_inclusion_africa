@@ -103,7 +103,7 @@ elif selected == 'Plots':
 
     def graf_pie():
 
-        fig = px.pie(df, names=col_piechart, color_discrete_sequence=px.colors.qualitative.Set2, hole=.5)
+        fig = px.pie(df, names=col_piechart, color=col_piechart, color_discrete_sequence=px.colors.qualitative.Set2, hole=.5)
         fig.update_layout(
             autosize=False,
             width=1000,
