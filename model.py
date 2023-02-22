@@ -133,7 +133,7 @@ elif selected == 'Model':
             st.dataframe(trial_data)
 
             # LLamo al pkl con el modelo
-            with open('./financial_inclusion.pkl', 'rb') as clf_inclusion:
+            with open('financial_inclusion.pkl', 'rb') as clf_inclusion:
                 modelo_inclusion = pickle.load(clf_inclusion)
             # Prediccion usando el trial data con lo insertado en el form
             if modelo_inclusion.predict(trial_data) == 1:
