@@ -6,6 +6,8 @@ import pandas as pd
 import pickle
 from streamlit_option_menu import option_menu
 import streamlit.components.v1 as html
+import plotly.express as px
+
 
 #1. Import
 df = pd.read_csv('Train.csv')
@@ -31,6 +33,8 @@ if selected == 'Home':
     st.write('El conjunto de datos utilizado, ha sido extraído de Zindi, una red profesional para científicos de datos en África; constituyen los resultados de las encuestas de Finscope de 2016 a 2018.')
     st.write("[Zindi website](https://zindi.africa/competitions/financial-inclusion-in-africa)")
 
+    st.write('Su contenido principal está relacionado con la información demográfica y servicios financieros utilizados por aproximadamente 23.500 personas en África, correspondientes a 4 países: Kenia, Ruanda, Tanzania y Uganda.')
+    
     st.write("A continuacion podemos ver como esta compuesto el set de datos")
     st.dataframe(df.head())
 
@@ -53,31 +57,66 @@ elif selected == 'Plots':
 
     #countplot
     col_countplot = st.sidebar.selectbox('Countplot column',['country','location_type','household_size','relationship_with_head','marital_status','education_level','job_type'])
-    def count_plot(): 
-        fig = plt.figure(figsize=(15, 8))
-        g = sns.countplot(data=df, y=col_countplot,palette="rainbow", order = df[col_countplot].value_counts().index).set_title(col_countplot,
-                          fontdict = {'fontsize': 40,      
-                                      'fontweight': 'bold', 
-                                      'color': 'black'})
+    # def count_plot(): 
+    #     fig = plt.figure(figsize=(15, 8))
+    #     g = sns.countplot(data=df, y=col_countplot,palette="rainbow", order = df[col_countplot].value_counts().index).set_title(col_countplot,
+    #                       fontdict = {'fontsize': 40,      
+    #                                   'fontweight': 'bold', 
+    #                                   'color': 'black'})
+    #     st.pyplot(fig)
+
+    def graf_hist():
+        fig = px.histogram(df, x= col_countplot, color_discrete_sequence=px.colors.qualitative.Set2).update_xaxes(categoryorder='total descending',)
+        fig.update_layout(
+            autosize=False,
+            width=1200,
+            height=600,
+            bargap= 0.2,
+            title={
+                'text': (f'Distribución: {col_countplot}'),
+                'y':0.95,
+                'x':0.5,
+                'xanchor': 'center',
+                'yanchor': 'top'},
+        
+            legend_title= None,
+            font=dict(size=18)
+            )
         st.pyplot(fig)
 
 
     # pie chart
     col_piechart = st.sidebar.selectbox('Pie chart column',['bank_account','gender_of_respondent','cellphone_access'])
+    #def pie_plot():
+    #    fig = plt.figure(figsize=(10, 4))
+    #    colors = sns.color_palette('rainbow')[0:5]
+    #    data_pie = df[col_piechart].value_counts()
+    #    if col_piechart == 'bank_account':
+    #        labels = ['No tiene cuenta bancaria', 'Tiene cuenta bancaria']
+    #    elif col_piechart == 'cellphone_access':
+    #        labels = ['No tiene acceso a teléfono celular', 'Tiene acceso a teléfono celular']
+    #    elif col_piechart == 'gender_of_respondent':
+    #        labels = ['Hombre', 'Mujer']
+    #    plt.pie(data_pie, labels = labels, colors = colors, autopct='%.0f%%')
+    #    st.pyplot(fig)
 
-    def pie_plot():
-        fig = plt.figure(figsize=(10, 4))
-        colors = sns.color_palette('rainbow')[0:5]
-        data_pie = df[col_piechart].value_counts()
-        if col_piechart == 'bank_account':
-            labels = ['No tiene cuenta bancaria', 'Tiene cuenta bancaria']
-        elif col_piechart == 'cellphone_access':
-            labels = ['No tiene acceso a teléfono celular', 'Tiene acceso a teléfono celular']
-        elif col_piechart == 'gender_of_respondent':
-            labels = ['Hombre', 'Mujer']
-        plt.pie(data_pie, labels = labels, colors = colors, autopct='%.0f%%')
+
+    def graf_pie():
+
+        fig = px.pie(df, names= col_piechart, color_discrete_sequence=px.colors.qualitative.Set2, hole=.5)
+        fig.update_layout(
+            autosize=False,
+            width=1200,
+            height=600,
+            title={
+                'text': (f'Proporciones: {col_piechart}'),
+                'y':0.95,
+                'x':0.01},
+            legend_title= None,
+            font=dict(size=18)
+            )
+
         st.pyplot(fig)
-
 
     # Heatmap
     def heatmap_plot(): 
@@ -88,11 +127,12 @@ elif selected == 'Plots':
 
     if __name__ == '__main__':
         st.header('Countplot')
-        count_plot()
+        graf_hist()
         st.header('Pie chart')
-        pie_plot()
+        graf_pie()
         st.header('Heatmap')
         heatmap_plot()
+
 
 
 # Pagina 3 = Comparación de modelos
@@ -104,7 +144,8 @@ elif selected == 'Model backstage':
         def print_model_comparison():
             with open('comparacion_modelos.csv', 'rb') as comparacion_modelos:
                 comparacion_modelos_data = pd.read_csv(comparacion_modelos, index_col='Unnamed: 0')
-            return st.dataframe(comparacion_modelos_data)
+            return st.dataframe(comparacion_modelos_data.sort_values(ascending=False)
+)
         print_model_comparison()
 
 
