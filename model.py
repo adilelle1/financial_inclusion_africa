@@ -98,11 +98,30 @@ elif selected == 'Plots':
 
         st.plotly_chart(fig)
 
+    # boxplot
+    col_box_plot = st.sidebar.selectbox('Countplot column',[df.columns])
+    def boxplot():
+        fig = px.box(df, x=col_box_plot)
+        fig.update_layout(
+            autosize=False,
+            width=1000,
+            height=600,
+            title={
+                'text': ('Boxplot: Edades'),
+                'y':0.95,
+                'x':0.5,
+                'xanchor': 'center',
+                'yanchor': 'top'},
+            font=dict(size=18)
+            )
+        st.plotly_chart(fig)
+
+
     # Heatmap
     def heatmap_plot(): 
-        fig = plt.figure(figsize=(15, 8))
-        g = sns.heatmap(df.corr(),annot=True, cmap="YlGnBu")
-        st.pyplot(fig)
+        fig = px.imshow(df)
+        st.plotly_chart(fig)
+
     
 
     if __name__ == '__main__':
@@ -110,6 +129,8 @@ elif selected == 'Plots':
         graf_hist()
         st.header('Pie chart')
         graf_pie()
+        st.header('Boxplot')
+        boxplot()
         st.header('Heatmap')
         heatmap_plot()
 
