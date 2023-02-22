@@ -14,7 +14,7 @@ df = pd.read_csv('Train.csv')
 with st.sidebar:
     selected = option_menu(
         menu_title='Main menu',
-        options=['Home', 'Plots', 'Model'],
+        options=['Home', 'Plots', 'Model backstage', 'Model trial'],
     )
 
 # Pagina 1 = Home
@@ -85,9 +85,48 @@ elif selected == 'Plots':
         st.header('Heatmap')
         heatmap_plot()
 
-# Pagina 3 = Modelo
-elif selected == 'Model':
-    st.title('Ready to try your model?')
+
+# Pagina 3 = Comparación de modelos
+elif selected == 'Model backstage':
+    def model_backstage():
+        st.title('Building a classification model')
+        st.write('Para armar el modelo de clasificación, en primer lugar decidimos probar por separado como performaba cada clasificador y hacer una búsqueda de los parámetros óptimos de cada uno.')
+
+        def print_model_comparison():
+            with open('comparacion_modelos.csv', 'rb') as comparacion_modelos:
+                comparacion_modelos_data = pd.read_csv(comparacion_modelos, index_col='Unnamed: 0')
+            return st.dataframe(comparacion_modelos_data)
+        print_model_comparison()
+
+
+        st.write('Vemos que todos los clasificadores tienen métricas similares.')
+        st.write('Para nuestro modelo vamos a tomar dos, en este caso como los mejores fueron Gradient Boosting y XG Boost tomaremos esos.')
+
+        st.write('Usando Pipeline y GridSearch obtuvimos los siguientes hiperparametros para nuestro modelo:')
+        def print_model_params():
+            with open('model_params.csv', 'rb') as moodel_params:
+                moodel_params_data = pd.read_csv(moodel_params, index_col='Unnamed: 0')
+            return st.dataframe(moodel_params_data)
+        print_model_params()
+
+        st.write('Los resultados del modelo de clasificación fueron los siguientes:')
+        def print_model_scores():
+            with open('model_scores.csv', 'rb') as moodel_scores:
+                moodel_scores_data = pd.read_csv(moodel_scores, index_col='Unnamed: 0')
+            return st.dataframe(moodel_scores_data)
+        print_model_scores()
+        
+        st.write('curva ROC-AUC:')
+        st.image('roc_auc.png')
+
+    if __name__ == '__main__':
+        model_backstage()
+
+
+
+# Pagina 4 = Modelo
+elif selected == 'Model trial':
+    st.title('Ready to try our model?')
     def inputs():
         st.sidebar.header('Model inputs')
         country = st.sidebar.selectbox('Country', df.country.unique())	
