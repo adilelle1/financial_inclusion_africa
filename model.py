@@ -57,14 +57,6 @@ elif selected == 'Plots':
 
     #countplot
     col_countplot = st.sidebar.selectbox('Countplot column',['country','location_type','household_size','relationship_with_head','marital_status','education_level','job_type'])
-    # def count_plot(): 
-    #     fig = plt.figure(figsize=(15, 8))
-    #     g = sns.countplot(data=df, y=col_countplot,palette="rainbow", order = df[col_countplot].value_counts().index).set_title(col_countplot,
-    #                       fontdict = {'fontsize': 40,      
-    #                                   'fontweight': 'bold', 
-    #                                   'color': 'black'})
-    #     st.pyplot(fig)
-
     def graf_hist():
         fig = px.histogram(df, x= col_countplot, color= col_countplot, color_discrete_sequence=px.colors.qualitative.Set2).update_xaxes(categoryorder='total descending')
         fig.update_layout(
@@ -87,20 +79,6 @@ elif selected == 'Plots':
 
     # pie chart
     col_piechart = st.sidebar.selectbox('Pie chart column',['bank_account','gender_of_respondent','cellphone_access'])
-    #def pie_plot():
-    #    fig = plt.figure(figsize=(10, 4))
-    #    colors = sns.color_palette('rainbow')[0:5]
-    #    data_pie = df[col_piechart].value_counts()
-    #    if col_piechart == 'bank_account':
-    #        labels = ['No tiene cuenta bancaria', 'Tiene cuenta bancaria']
-    #    elif col_piechart == 'cellphone_access':
-    #        labels = ['No tiene acceso a teléfono celular', 'Tiene acceso a teléfono celular']
-    #    elif col_piechart == 'gender_of_respondent':
-    #        labels = ['Hombre', 'Mujer']
-    #    plt.pie(data_pie, labels = labels, colors = colors, autopct='%.0f%%')
-    #    st.pyplot(fig)
-
-
     def graf_pie():
 
         fig = px.pie(df, names=col_piechart, color=col_piechart, color_discrete_sequence=px.colors.qualitative.Set2, hole=.5)
@@ -111,7 +89,9 @@ elif selected == 'Plots':
             title={
                 'text': (f'Proporciones: {col_piechart}'),
                 'y':0.95,
-                'x':0.01},
+                'x':0.5,
+                'xanchor': 'center',
+                'yanchor': 'top'},
             legend_title= None,
             font=dict(size=18)
             )
@@ -144,8 +124,9 @@ elif selected == 'Model backstage':
         def print_model_comparison():
             with open('comparacion_modelos.csv', 'rb') as comparacion_modelos:
                 comparacion_modelos_data = pd.read_csv(comparacion_modelos, index_col='Unnamed: 0')
-            return st.dataframe(comparacion_modelos_data.sort_values(ascending=False)
-)
+                comparacion_modelos_data_sorted = comparacion_modelos_data.sort_values(ascending=False)
+            return st.dataframe(comparacion_modelos_data_sorted)
+
         print_model_comparison()
 
 
