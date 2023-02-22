@@ -69,7 +69,7 @@ elif selected == 'Plots':
         fig = px.histogram(df[col_countplot], color_discrete_sequence=px.colors.qualitative.Set2).update_xaxes(categoryorder='total descending')
         fig.update_layout(
             autosize=False,
-            width=1200,
+            width=1000,
             height=600,
             bargap= 0.2,
             title={
@@ -103,10 +103,10 @@ elif selected == 'Plots':
 
     def graf_pie():
 
-        fig = px.pie(df[col_piechart], color_discrete_sequence=px.colors.qualitative.Set2, hole=.5)
+        fig = px.pie(df, names=col_piechart, color_discrete_sequence=px.colors.qualitative.Set2, hole=.5)
         fig.update_layout(
             autosize=False,
-            width=1200,
+            width=1000,
             height=600,
             title={
                 'text': (f'Proporciones: {col_piechart}'),
