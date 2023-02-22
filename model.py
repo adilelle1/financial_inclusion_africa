@@ -66,7 +66,7 @@ elif selected == 'Plots':
     #     st.pyplot(fig)
 
     def graf_hist():
-        fig = px.histogram(df, x= col_countplot, color_discrete_sequence=px.colors.qualitative.Set2).update_xaxes(categoryorder='total descending',)
+        fig = px.histogram(df[col_countplot], color_discrete_sequence=px.colors.qualitative.Set2).update_xaxes(categoryorder='total descending')
         fig.update_layout(
             autosize=False,
             width=1200,
@@ -103,7 +103,7 @@ elif selected == 'Plots':
 
     def graf_pie():
 
-        fig = px.pie(df, names= col_piechart, color_discrete_sequence=px.colors.qualitative.Set2, hole=.5)
+        fig = px.pie(df[col_piechart], color_discrete_sequence=px.colors.qualitative.Set2, hole=.5)
         fig.update_layout(
             autosize=False,
             width=1200,
