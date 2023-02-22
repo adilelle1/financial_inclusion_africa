@@ -55,10 +55,10 @@ if selected == 'Home':
 elif selected == 'Plots':
     st.title('Plots')
 
-    #countplot
-    col_countplot = st.sidebar.selectbox('Countplot column',['country','location_type', 'age_of_respondent','household_size','relationship_with_head','marital_status','education_level','job_type'])
+    #histplot
+    col_countplot = st.sidebar.selectbox('Histplot column',['country','location_type', 'age_of_respondent','household_size','relationship_with_head','marital_status','education_level','job_type'])
     def graf_hist():
-        fig = px.histogram(df, x= col_countplot, color= col_countplot, color_discrete_sequence=px.colors.qualitative.Set2).update_xaxes(categoryorder='total descending')
+        fig = px.histogram(df, x= col_countplot, color= 'bank_account', color_discrete_sequence=px.colors.qualitative.Set2).update_xaxes(categoryorder='total descending')
         fig.update_layout(
             autosize=False,
             width=1000,
@@ -126,7 +126,7 @@ elif selected == 'Plots':
     
 
     if __name__ == '__main__':
-        st.header('Countplot')
+        st.header('Histplot')
         graf_hist()
         st.header('Pie chart')
         graf_pie()
