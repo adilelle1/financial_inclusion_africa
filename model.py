@@ -6,8 +6,6 @@ import pandas as pd
 import pickle
 from streamlit_option_menu import option_menu
 import streamlit.components.v1 as html
-from  PIL import Image
-import io 
 
 #1. Import
 df = pd.read_csv('Train.csv')
@@ -132,7 +130,6 @@ elif selected == 'Model':
             st.write('Estos son los datos que ingresaste:')
             st.dataframe(trial_data)
 
-            # LLamo al pkl con el modelo
             with open('financial_inclusion.pkl', 'rb') as clf_inclusion:
                 modelo_inclusion = pickle.load(clf_inclusion)
             # Prediccion usando el trial data con lo insertado en el form
