@@ -82,7 +82,7 @@ elif selected == 'Plots':
             legend_title= None,
             font=dict(size=18)
             )
-        st.pyplot(fig)
+        st.plotly_chart(fig)
 
 
     # pie chart
@@ -116,7 +116,7 @@ elif selected == 'Plots':
             font=dict(size=18)
             )
 
-        st.pyplot(fig)
+        st.plotly_chart(fig)
 
     # Heatmap
     def heatmap_plot(): 
