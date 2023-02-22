@@ -122,9 +122,9 @@ elif selected == 'Model backstage':
         st.write('Para armar el modelo de clasificación, en primer lugar decidimos probar por separado como performaba cada clasificador y hacer una búsqueda de los parámetros óptimos de cada uno.')
 
         def print_model_comparison():
-            with open('comparacion_modelos.csv', 'rb') as comparacion_modelos:
-                comparacion_modelos_data = pd.read_csv(comparacion_modelos, index_col='Unnamed: 0')
-            return st.dataframe(comparacion_modelos_data)
+            comparacion_modelos_data = pd.read_csv('comparacion_modelos.csv', index_col='Unnamed: 0')
+            comparacion_modelos_data_sorted = comparacion_modelos_data.sort_values(by='accuracy', ascending=False)
+            return st.dataframe(comparacion_modelos_data_sorted)
         print_model_comparison()
 
 
@@ -133,15 +133,13 @@ elif selected == 'Model backstage':
 
         st.write('Usando Pipeline y GridSearch obtuvimos los siguientes hiperparametros para nuestro modelo:')
         def print_model_params():
-            with open('model_params.csv', 'rb') as moodel_params:
-                moodel_params_data = pd.read_csv(moodel_params, index_col='Unnamed: 0')
+            moodel_params_data = pd.read_csv('model_params.csv', index_col='Unnamed: 0')
             return st.dataframe(moodel_params_data)
         print_model_params()
 
         st.write('Los resultados del modelo de clasificación fueron los siguientes:')
         def print_model_scores():
-            with open('model_scores.csv', 'rb') as moodel_scores:
-                moodel_scores_data = pd.read_csv(moodel_scores, index_col='Unnamed: 0')
+            moodel_scores_data = pd.read_csv('model_scores.csv', index_col='Unnamed: 0')
             return st.dataframe(moodel_scores_data)
         print_model_scores()
         
