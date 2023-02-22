@@ -21,11 +21,17 @@ with st.sidebar:
 # Pagina 1 = Home
 if selected == 'Home':
     st.title('Bienvenidos a Financial inclusion!')
+
+    st.header('Problemática')
+    st.write('La inclusión financiera refiere al acceso que tienen las personas y las empresas a diversos productos y servicios financieros útiles y asequibles que atienden sus necesidades. Representa una preocupación global, ya que se considera como elemento facilitador para reducir la pobreza extrema y promover el crecimiento y desarrollo económico.')
+    st.write('El acceso a cuentas bancarias, impacta tanto en el desarrollo humano, como en el ámbito económico, ya que permite a los hogares ahorrar, realizar pagos, acceder a créditos, financiamiento, entre otros; al mismo tiempo que ayuda a las empresas a aumentar su solvencia crediticia y mejorar su acceso a préstamos, seguros y servicios relacionados.')
+    st.write('En África, la incusión financiera constituye uno de los principales problemas, ya que en una población compuesta de alrededor de 172,19 millones de personas (The World Bank Group , 2020) en 4 países (Kenia, Ruanda, Tanzania y Uganda), solo el 14% de la población adulta, representada por 9,1 millones, tiene este acceso (Zindi).')
+    st.write('Por esta razón, la Nueva Alianza para el Desarrollo de África (NEPAD) ha involucrado a representantes del continente para encontrar soluciones que podrían mejorar la inclusión financiera y el bienestar de las personas que viven en África, utilizando el modelo empresarial cooperativo.')
+    
     st.write('Vamos a trabajar con un dataset de inclusion financiera en africa')
-    st.write("A continuacion podemos ver como esta compuesto de set de datos")
-    st.write("Aqui tenemos un ejemplo de la informacion cruda disponible")
+    st.write("A continuacion podemos ver como esta compuesto el set de datos")
     st.dataframe(df.head())
-    st.write("Como vemos hay varias columnas, algunas con datos numericos, otros categoricos y algunos redundantes.")
+
     st.subheader("\n Descripcion de columnas")
     st.markdown("\n **country** :  En qué ciudad vive")
     st.markdown("\n **bank_account** :  Si posee cuenta de banco o no -- objetivo")
