@@ -29,7 +29,7 @@ if selected == 'Home':
     st.write('Por esta razón, la Nueva Alianza para el Desarrollo de África (NEPAD) ha involucrado a representantes del continente para encontrar soluciones que podrían mejorar la inclusión financiera y el bienestar de las personas que viven en África, utilizando el modelo empresarial cooperativo.')
     
     st.write('El conjunto de datos utilizado, ha sido extraído de Zindi, una red profesional para científicos de datos en África; constituyen los resultados de las encuestas de Finscope de 2016 a 2018.')
-    st.write("[link](https://zindi.africa/competitions/financial-inclusion-in-africa)")
+    st.write("[Zindi website](https://zindi.africa/competitions/financial-inclusion-in-africa)")
 
     st.write("A continuacion podemos ver como esta compuesto el set de datos")
     st.dataframe(df.head())
