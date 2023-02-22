@@ -99,7 +99,7 @@ elif selected == 'Plots':
         st.plotly_chart(fig)
 
     # boxplot
-    col_box_plot = st.sidebar.selectbox('Countplot column',['age_of_respondent','household_size'])
+    col_box_plot = st.sidebar.selectbox('Boxplot column',['age_of_respondent','household_size'])
     def boxplot():
         fig = px.box(df, x=col_box_plot)
         fig.update_layout(
@@ -118,8 +118,9 @@ elif selected == 'Plots':
 
 
     # Heatmap
-    def heatmap_plot(): 
-        fig = px.imshow(df)
+    def heatmap_plot():
+        corr_matrix =df.corr() 
+        fig = px.imshow(corr_matrix)
         st.plotly_chart(fig)
 
     
