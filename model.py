@@ -101,7 +101,7 @@ elif selected == 'Plots':
     # boxplot
     col_box_plot = st.sidebar.selectbox('Boxplot column',['age_of_respondent','household_size'])
     def boxplot():
-        fig = px.box(df, x=col_box_plot, y='bank_account'. color='bank_account', points='all')
+        fig = px.box(df, x=col_box_plot, color='bank_account')
         fig.update_layout(
             autosize=False,
             width=1000,
