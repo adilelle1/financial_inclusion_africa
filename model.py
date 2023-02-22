@@ -124,8 +124,7 @@ elif selected == 'Model backstage':
         def print_model_comparison():
             with open('comparacion_modelos.csv', 'rb') as comparacion_modelos:
                 comparacion_modelos_data = pd.read_csv(comparacion_modelos, index_col='Unnamed: 0')
-                comparacion_modelos_data_sorted = comparacion_modelos_data.sort_values(ascending=False)
-            return st.dataframe(comparacion_modelos_data_sorted)
+            return st.dataframe(comparacion_modelos)
 
         print_model_comparison()
 
