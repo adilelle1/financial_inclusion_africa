@@ -79,16 +79,15 @@ elif selected == 'Plots':
             bargap= 0.2,
             title={
                 'text': (f'Distribución: {col_histplot}'),
-                'title_font_size': 14,
                 'y':0.95,
                 'x':0.5,
                 'xanchor': 'center',
                 'yanchor': 'top'},
             yaxis = dict(tickfont = dict(size=12)),
             xaxis = dict(tickfont = dict(size=12)), 
-            legend_font_size= 10,
+            legend_font_size= 12,
             legend_title= None,
-            # font=dict(size=18)
+            font=dict(size=20)
             )
         st.plotly_chart(fig)
 
@@ -104,14 +103,13 @@ elif selected == 'Plots':
             height=600,
             title={
                 'text': (f'Proporciones: {col_piechart}'),
-                'title_font_size': 14,
                 'y':0.95,
                 'x':0.5,
                 'xanchor': 'center',
                 'yanchor': 'top'},
             legend_title= None,
-            legend_font_size= 10,
-            #font=dict(size=18)
+            legend_font_size= 12,
+            font=dict(size=20)
             )
 
         st.plotly_chart(fig)
@@ -126,13 +124,12 @@ elif selected == 'Plots':
             height=600,
             title={
                 'text': ('Boxplot: Edades'),
-                'title_font_size': 14,
                 'y':0.95,
                 'x':0.5,
                 'xanchor': 'center',
                 'yanchor': 'top'},
             legend_font_size= 12
-            # font=dict(size=18)
+            font=dict(size=20)
             )
         st.plotly_chart(fig)
 
@@ -159,7 +156,7 @@ elif selected == 'Plots':
                 'xanchor': 'center',
                 'yanchor': 'top'},
             showlegend=False,
-            # font=dict(size=15)
+            font=dict(size=20)
             )
 
 
@@ -207,11 +204,11 @@ elif selected == 'Model backstage':
             return st.dataframe(moodel_scores_data)
         print_model_scores()
 
-        st.write('Matriz de confusión:')
+        st.header('Matriz de confusión:')
         st.image('heatmap.png')
 
 
-        st.write('curva ROC-AUC:')
+        st.header('Curva ROC-AUC:')
         st.image('roc_auc.png')
 
     if __name__ == '__main__':
