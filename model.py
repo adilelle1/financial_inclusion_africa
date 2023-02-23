@@ -86,7 +86,7 @@ elif selected == 'Plots':
             yaxis = dict(tickfont = dict(size=12)),
             xaxis = dict(tickfont = dict(size=12)), 
             legend_font_size= 12,
-            legend_title= None,
+            legend_title= None
             )
         st.plotly_chart(fig)
 
@@ -152,7 +152,7 @@ elif selected == 'Plots':
                 'x':0.5,
                 'xanchor': 'center',
                 'yanchor': 'top'},
-            showlegend=False,
+            showlegend=False
             )
 
 
