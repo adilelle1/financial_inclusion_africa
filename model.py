@@ -134,7 +134,7 @@ elif selected == 'Plots':
         fig = px.imshow(data.corr(), text_auto=True, aspect="auto", color_continuous_scale='darkmint').update_xaxes(tickangle=45)
         fig.update_layout(
             autosize=False,
-            width=1200,
+            width=1000,
             height=800,
             bargap=0.2,
             title={
