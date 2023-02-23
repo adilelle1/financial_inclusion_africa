@@ -7,6 +7,7 @@ import pickle
 from streamlit_option_menu import option_menu
 import streamlit.components.v1 as html
 import plotly.express as px
+from sklearn.preprocessing import OneHotEncoder
 
 
 #1. Import
@@ -124,8 +125,29 @@ elif selected == 'Plots':
 
     # Heatmap
     def heatmap_plot():
-        corr_matrix =df.corr() 
-        fig = px.imshow(corr_matrix)
+        # Encodeamos las variables, facilitando un mejor análisis de las mismas
+        binary_encoder = OneHotEncoder(sparse=False, drop='if_binary')
+        data =df.copy()
+        data['bank_account'], data['location_type'], data['cellphone_access'], data['gender_of_respondent'] = binary_encoder.fit_transform(data[['bank_account','location_type', 'cellphone_access','gender_of_respondent']]).T
+
+
+        fig = px.imshow(data.corr(), text_auto=True, aspect="auto", color_continuous_scale='darkmint').update_xaxes(tickangle=45)
+        fig.update_layout(
+            autosize=False,
+            width=1200,
+            height=800,
+            bargap=0.2,
+            title={
+                'text': ('Heatmap: Variables numéricas'),
+                'y':0.95,
+                'x':0.5,
+                'xanchor': 'center',
+                'yanchor': 'top'}, 
+            showlegend=False,
+            font=dict(size=15)
+            )
+
+
         st.plotly_chart(fig)
 
     
