@@ -83,9 +83,9 @@ elif selected == 'Plots':
                 'x':0.5,
                 'xanchor': 'center',
                 'yanchor': 'top'},
-            yaxis = dict(tickfont = dict(size=12)),
-            xaxis = dict(tickfont = dict(size=12)), 
-            legend_font_size= 12,
+            yaxis = dict(tickfont = dict(size=14)),
+            xaxis = dict(tickfont = dict(size=14)), 
+            legend_font_size= 14,
             legend_title= None
             )
         st.plotly_chart(fig)
@@ -126,7 +126,7 @@ elif selected == 'Plots':
                 'x':0.5,
                 'xanchor': 'center',
                 'yanchor': 'top'},
-            legend_font_size= 12
+            legend_font_size= 14
             )
         st.plotly_chart(fig)
 
@@ -147,7 +147,6 @@ elif selected == 'Plots':
             bargap=0.2,
             title={
                 'text': ('Heatmap: Variables numéricas'),
-                'title_font_size': 14,                
                 'y':0.95,
                 'x':0.5,
                 'xanchor': 'center',
