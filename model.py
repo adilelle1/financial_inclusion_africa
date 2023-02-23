@@ -32,10 +32,11 @@ if selected == 'Home':
 
     st.header('Problemática')
     st.write('La inclusión financiera refiere al acceso que tienen las personas y las empresas a diversos productos y servicios financieros útiles y asequibles que atienden sus necesidades. Representa una preocupación global, ya que se considera como elemento facilitador para reducir la pobreza extrema y promover el crecimiento y desarrollo económico.')
-    st.write('El acceso a cuentas bancarias, impacta tanto en el desarrollo humano, como en el ámbito económico, ya que permite a los hogares ahorrar, realizar pagos, acceder a créditos, financiamiento, entre otros; al mismo tiempo que ayuda a las empresas a aumentar su solvencia crediticia y mejorar su acceso a préstamos, seguros y servicios relacionados.')
+    st.write('El acceso a cuentas bancarias impacta tanto en el desarrollo humano como en el ámbito económico, ya que permite a los hogares ahorrar, realizar pagos, acceder a créditos, financiamiento, entre otros; al mismo tiempo que ayuda a las empresas a aumentar su solvencia crediticia y mejorar su acceso a préstamos, seguros y servicios relacionados.')
     st.write('En África, la incusión financiera constituye uno de los principales problemas, ya que en una población compuesta de alrededor de 172,19 millones de personas (The World Bank Group , 2020) en 4 países (Kenia, Ruanda, Tanzania y Uganda), solo el 14% de la población adulta, representada por 9,1 millones, tiene este acceso (Zindi).')
     st.write('Por esta razón, la Nueva Alianza para el Desarrollo de África (NEPAD) ha involucrado a representantes del continente para encontrar soluciones que podrían mejorar la inclusión financiera y el bienestar de las personas que viven en África, utilizando el modelo empresarial cooperativo.')
     
+    st.write('En este trabajo buscamos predecir quién es más pobrable que tenga una cuenta bancaria, lo que potencialmente podría ayudar a entidades bancarias a encontrar potenciales clientes.')
     st.write('El conjunto de datos utilizado, ha sido extraído de Zindi, una red profesional para científicos de datos en África; constituyen los resultados de las encuestas de Finscope de 2016 a 2018.')
     st.write("[Zindi website](https://zindi.africa/competitions/financial-inclusion-in-africa)")
 
@@ -58,6 +59,12 @@ if selected == 'Home':
 
 
 # Pagina 2 = Graficos
+
+
+        ###  agrandar la leyenda
+        ### agrandar la informacion de los ejes
+        ### agrandar los titulos
+
 elif selected == 'Plots':
     st.title('Plots')
 
@@ -72,13 +79,16 @@ elif selected == 'Plots':
             bargap= 0.2,
             title={
                 'text': (f'Distribución: {col_histplot}'),
+                'title_font_size': 14,
                 'y':0.95,
                 'x':0.5,
                 'xanchor': 'center',
                 'yanchor': 'top'},
-        
+            yaxis = dict(tickfont = dict(size=12)),
+            xaxis = dict(tickfont = dict(size=12)), 
+            legend_font_size= 10,
             legend_title= None,
-            font=dict(size=18)
+            # font=dict(size=18)
             )
         st.plotly_chart(fig)
 
@@ -94,12 +104,14 @@ elif selected == 'Plots':
             height=600,
             title={
                 'text': (f'Proporciones: {col_piechart}'),
+                'title_font_size': 14,
                 'y':0.95,
                 'x':0.5,
                 'xanchor': 'center',
                 'yanchor': 'top'},
             legend_title= None,
-            font=dict(size=18)
+            legend_font_size= 10,
+            #font=dict(size=18)
             )
 
         st.plotly_chart(fig)
@@ -114,11 +126,13 @@ elif selected == 'Plots':
             height=600,
             title={
                 'text': ('Boxplot: Edades'),
+                'title_font_size': 14,
                 'y':0.95,
                 'x':0.5,
                 'xanchor': 'center',
                 'yanchor': 'top'},
-            font=dict(size=18)
+            legend_font_size= 12
+            # font=dict(size=18)
             )
         st.plotly_chart(fig)
 
@@ -139,12 +153,13 @@ elif selected == 'Plots':
             bargap=0.2,
             title={
                 'text': ('Heatmap: Variables numéricas'),
+                'title_font_size': 14,                
                 'y':0.95,
                 'x':0.5,
                 'xanchor': 'center',
-                'yanchor': 'top'}, 
+                'yanchor': 'top'},
             showlegend=False,
-            font=dict(size=15)
+            # font=dict(size=15)
             )
 
 
