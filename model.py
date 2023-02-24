@@ -83,10 +83,9 @@ elif selected == 'Data visualization':
                 'x':0.5,
                 'xanchor': 'center',
                 'yanchor': 'top'},
-            yaxis = dict(tickfont = dict(size=14)),
-            xaxis = dict(tickfont = dict(size=14)), 
-            legend_font_size= 14,
-            legend_title= None
+            yaxis = dict(tickfont = dict(size=24)),
+            xaxis = dict(tickfont = dict(size=24)),
+            legend=dict(font=dict(size= 10))
             )
         st.plotly_chart(fig)
 
@@ -107,8 +106,7 @@ elif selected == 'Data visualization':
                 'x':0.5,
                 'xanchor': 'center',
                 'yanchor': 'top'},
-            legend_title= None,
-            legend_font_size= 12
+            legend=dict(font=dict(size= 10))
             )
         st.plotly_chart(fig)
 
@@ -129,7 +127,7 @@ elif selected == 'Data visualization':
                 'xanchor': 'center',
                 'yanchor': 'top'},
             font=dict(size=18),
-            legend=dict(font=dict(size= 20))
+            legend=dict(font=dict(size= 10))
                               )
         fig.update_xaxes(tickfont_size=10, ticks="outside", ticklen=10, tickwidth=5)
         st.plotly_chart(fig)
