@@ -134,7 +134,24 @@ elif selected == 'Data visualization':
                 legend_font_size= 14,
                 legend_title= None
                 )
-            st.plotly_chart(fig)
+            
+    def graf_hist2():
+        fig = px.histogram(df, x= ['bank_account'], color= col_hist_by_feat, barmode='group', color_discrete_sequence=px.colors.qualitative.Set2).update_xaxes(categoryorder='total descending',)
+        fig.update_layout(
+            autosize=False,
+            width=1200,
+            height=600,
+            bargap= 0.2,
+            title={
+                'text': (f'Cuenta bancaria por {col_hist_by_feat}'),
+                'y':0.97,
+                'x':0.5,
+                'xanchor': 'center',
+                'yanchor': 'top'},
+        
+            legend_title= None,
+            font=dict(size=18))
+        st.plotly_chart(fig)
 
 
     # boxplot
