@@ -21,7 +21,7 @@ st.set_page_config(page_title="Financial inclusion prediction App")
 with st.sidebar:
     selected = option_menu(
         menu_title='Menu',
-        options=['Home', 'Plots', 'Model backstage', 'Model trial'],
+        options=['Home', 'Data visualization', 'Model backstage', 'Model trial'],
     )
 
 # Pagina 1 = Home
@@ -30,19 +30,19 @@ if selected == 'Home':
     st.write('Predict who in Africa is most likely to have a bank account')
 
 
-    st.header('Problemática')
+    st.header('Problemática y objetivos')
     st.write('La inclusión financiera refiere al acceso que tienen las personas y las empresas a diversos productos y servicios financieros útiles y asequibles que atienden sus necesidades. Representa una preocupación global, ya que se considera como elemento facilitador para reducir la pobreza extrema y promover el crecimiento y desarrollo económico.')
     st.write('El acceso a cuentas bancarias impacta tanto en el desarrollo humano como en el ámbito económico, ya que permite a los hogares ahorrar, realizar pagos, acceder a créditos, financiamiento, entre otros; al mismo tiempo que ayuda a las empresas a aumentar su solvencia crediticia y mejorar su acceso a préstamos, seguros y servicios relacionados.')
     st.write('En África, la incusión financiera constituye uno de los principales problemas, ya que en una población compuesta de alrededor de 172,19 millones de personas (The World Bank Group , 2020) en 4 países (Kenia, Ruanda, Tanzania y Uganda), solo el 14% de la población adulta, representada por 9,1 millones, tiene este acceso (Zindi).')
     st.write('Por esta razón, la Nueva Alianza para el Desarrollo de África (NEPAD) ha involucrado a representantes del continente para encontrar soluciones que podrían mejorar la inclusión financiera y el bienestar de las personas que viven en África, utilizando el modelo empresarial cooperativo.')
-    
     st.write('En este trabajo buscamos predecir quién es más pobrable que tenga una cuenta bancaria, lo que potencialmente podría ayudar a entidades bancarias a encontrar potenciales clientes.')
+    
+    st.header('Dataset')
     st.write('El conjunto de datos utilizado, ha sido extraído de Zindi, una red profesional para científicos de datos en África; constituyen los resultados de las encuestas de Finscope de 2016 a 2018.')
     st.write("[Zindi website](https://zindi.africa/competitions/financial-inclusion-in-africa)")
 
     st.write('Su contenido principal está relacionado con la información demográfica y servicios financieros utilizados por aproximadamente 23.500 personas en África, correspondientes a 4 países: Kenia, Ruanda, Tanzania y Uganda.')
-    
-    st.write("A continuacion podemos ver como esta compuesto el set de datos")
+    st.write("A continuación podemos ver cómo se compone el set de datos")
     st.dataframe(df.head())
 
     st.subheader("\n Descripcion de columnas")
@@ -65,11 +65,11 @@ if selected == 'Home':
         ### agrandar la informacion de los ejes
         ### agrandar los titulos
 
-elif selected == 'Plots':
-    st.title('Plots')
+elif selected == 'Data visualization':
+    st.title('Data visualization')
 
     #histplot
-    col_histplot = st.sidebar.selectbox('Histplot column',['country','location_type', 'age_of_respondent','household_size','relationship_with_head','marital_status','education_level','job_type'])
+    col_histplot = st.sidebar.selectbox('Columna - Histplot',['country','location_type', 'age_of_respondent','household_size','relationship_with_head','marital_status','education_level','job_type'])
     def graf_hist():
         fig = px.histogram(df, x= col_histplot, color=col_histplot, color_discrete_sequence=px.colors.qualitative.Set2).update_xaxes(categoryorder='total descending')
         fig.update_layout(
@@ -92,7 +92,8 @@ elif selected == 'Plots':
 
 
     # pie chart
-    col_piechart = st.sidebar.selectbox('Pie chart column',['bank_account','gender_of_respondent','cellphone_access'])
+    col_piechart = st.sidebar.selectbox('Columna - Pie chart',['bank_account','gender_of_respondent','cellphone_access'])
+
     def graf_pie():
 
         fig = px.pie(df, names=col_piechart, color=col_piechart, color_discrete_sequence=px.colors.qualitative.Set2, hole=.5)
@@ -109,11 +110,35 @@ elif selected == 'Plots':
             legend_title= None,
             legend_font_size= 12
             )
-
         st.plotly_chart(fig)
 
+
+    # Histplot by feature
+    col_hist_by_feat = st.sidebar.selectbox('Columna - Histplot cuenta bancaria por variable',['country','location_type', 'age_of_respondent','household_size','relationship_with_head','marital_status','education_level','job_type'])
+
+    def graf_hist_by_feature():
+            fig = px.histogram(df, x= ['bank_account'], color=col_hist_by_feat, color_discrete_sequence=px.colors.qualitative.Set2).update_xaxes(categoryorder='total descending')
+            fig.update_layout(
+                autosize=False,
+                width=1000,
+                height=600,
+                bargap= 0.2,
+                title={
+                    'text': (f'Distribución cuenta bancaria por {col_hist_by_feat}'),
+                    'y':0.95,
+                    'x':0.5,
+                    'xanchor': 'center',
+                    'yanchor': 'top'},
+                yaxis = dict(tickfont = dict(size=14)),
+                xaxis = dict(tickfont = dict(size=14)), 
+                legend_font_size= 14,
+                legend_title= None
+                )
+            st.plotly_chart(fig)
+
+
     # boxplot
-    col_box_plot = st.sidebar.selectbox('Boxplot column',['age_of_respondent','household_size'])
+    col_box_plot = st.sidebar.selectbox('Columna - Boxplot',['age_of_respondent','household_size'])
     def boxplot():
         fig = px.box(df, x=col_box_plot, color='bank_account')
         fig.update_layout(
@@ -153,17 +178,17 @@ elif selected == 'Plots':
                 'yanchor': 'top'},
             showlegend=False
             )
-
-
         st.plotly_chart(fig)
 
     
 
     if __name__ == '__main__':
-        st.header('Histplot')
+        st.header('Distribución')
         graf_hist()
         st.header('Pie chart')
         graf_pie()
+        st.header('Distribución de cuenta bancaria por feature')
+        graf_hist_by_feature()
         st.header('Boxplot')
         boxplot()
         st.header('Heatmap')
