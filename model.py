@@ -101,13 +101,6 @@ elif selected == 'Data visualization':
             autosize=False,
             width=1000,
             height=600,
-            title={
-                'text': (f'Proporciones: {col_piechart}'),
-                'y':0.95,
-                'x':0.5,
-                'xanchor': 'center',
-                'yanchor': 'top',
-                'font_size':24},
             legend=dict(font=dict(size= 18))
         )
         st.plotly_chart(fig)
@@ -123,12 +116,6 @@ elif selected == 'Data visualization':
             width=1000,
             height=600,
             bargap= 0.2,
-            title={'text': (f'Cuenta bancaria por: {col_hist_by_feat}'),
-                'y':0.97,
-                'x':0.5,
-                'xanchor': 'center',
-                'yanchor': 'top',
-                'font_size':24},
             legend=dict(font=dict(size= 18)),
             xaxis = dict(showticklabels = True, tickfont = dict(size = 18))
             )
@@ -143,13 +130,6 @@ elif selected == 'Data visualization':
             autosize=False,
             width=1000,
             height=600,
-            title={
-                'text': (f'Boxplot: {col_box_plot}'),
-                'y':0.95,
-                'x':0.5,
-                'xanchor': 'center',
-                'yanchor': 'top',
-                'font_size':24},
             legend=dict(font=dict(size= 18)),
             xaxis = dict(showticklabels = True, tickfont = dict(size = 16))
 
@@ -171,13 +151,6 @@ elif selected == 'Data visualization':
             width=1000,
             height=800,
             bargap=0.2,
-            title={
-                'text': ('Heatmap: Variables numéricas'),
-                'y':0.95,
-                'x':0.5,
-                'xanchor': 'center',
-                'yanchor': 'top',
-                'font_size':24},
             yaxis = dict(tickfont = dict(size=18)),
             xaxis = dict(tickfont = dict(size=18)),
             showlegend=False
@@ -229,7 +202,7 @@ elif selected == 'Model backstage':
         print_model_scores()
 
         st.header('Matriz de confusión:')
-        st.image('heatmap.png')
+        st.image('conf_matrix.png')
 
 
         st.header('Curva ROC-AUC:')
