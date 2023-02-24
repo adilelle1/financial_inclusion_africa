@@ -115,7 +115,7 @@ elif selected == 'Data visualization':
     col_hist_by_feat = st.sidebar.selectbox('Columna - Histplot cuenta bancaria por variable',['country','location_type', 'household_size','relationship_with_head','marital_status','education_level','job_type'])
           
     def graf_hist_by_feature():
-        fig = px.histogram(df, facet_col=['bank_account'], color= col_hist_by_feat,  color_discrete_sequence=px.colors.qualitative.Set2).update_xaxes(categoryorder='total descending',)
+        fig = px.histogram(df, x=['bank_account'], color= col_hist_by_feat,  color_discrete_sequence=px.colors.qualitative.Set2).update_xaxes(categoryorder='total descending',)
         fig.update_layout(
             autosize=False,
             width=1000,
@@ -127,7 +127,7 @@ elif selected == 'Data visualization':
                 'xanchor': 'center',
                 'yanchor': 'top'},
             legend=dict(font=dict(size= 20)),
-            xaxis = dict(font = 12)
+            xaxis = dict(font = 20)
             )
         fig.update_xaxes(tickfont_size=10, ticks="outside", ticklen=10, tickwidth=5)
         st.plotly_chart(fig)
