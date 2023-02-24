@@ -82,7 +82,8 @@ elif selected == 'Data visualization':
                 'y':0.95,
                 'x':0.5,
                 'xanchor': 'center',
-                'yanchor': 'top'},
+                'yanchor': 'top',
+                'font_size':24},
             yaxis = dict(tickfont = dict(size=18)),
             xaxis = dict(tickfont = dict(size=18)),
             showlegend=False,
@@ -105,7 +106,8 @@ elif selected == 'Data visualization':
                 'y':0.95,
                 'x':0.5,
                 'xanchor': 'center',
-                'yanchor': 'top'},
+                'yanchor': 'top',
+                'font_size':24},
             legend=dict(font=dict(size= 18))
         )
         st.plotly_chart(fig)
@@ -125,11 +127,11 @@ elif selected == 'Data visualization':
                 'y':0.97,
                 'x':0.5,
                 'xanchor': 'center',
-                'yanchor': 'top'},
+                'yanchor': 'top',
+                'font_size':24},
             legend=dict(font=dict(size= 18)),
-            xaxis = dict(showticklabels = True, tickangle = 45, tickfont = dict(size = 28))
+            xaxis = dict(showticklabels = True, tickfont = dict(size = 18))
             )
-        #fig.update_xaxes(tickfont_size=10, ticks="outside", ticklen=10, tickwidth=5)
         st.plotly_chart(fig)
 
 
@@ -146,8 +148,11 @@ elif selected == 'Data visualization':
                 'y':0.95,
                 'x':0.5,
                 'xanchor': 'center',
-                'yanchor': 'top'},
-            legend=dict(font=dict(size= 18))
+                'yanchor': 'top',
+                'font_size':24},
+            legend=dict(font=dict(size= 18)),
+            xaxis = dict(showticklabels = True, tickfont = dict(size = 16))
+
             )
         st.plotly_chart(fig)
 
@@ -171,7 +176,8 @@ elif selected == 'Data visualization':
                 'y':0.95,
                 'x':0.5,
                 'xanchor': 'center',
-                'yanchor': 'top'},
+                'yanchor': 'top',
+                'font_size':24},
             yaxis = dict(tickfont = dict(size=18)),
             xaxis = dict(tickfont = dict(size=18)),
             showlegend=False
