@@ -114,13 +114,13 @@ elif selected == 'Data visualization':
 
 
     # Histplot by feature
-    col_hist_by_feat = st.sidebar.selectbox('Columna - Histplot cuenta bancaria por variable',['country','location_type', 'age_of_respondent','household_size','relationship_with_head','marital_status','education_level','job_type'])
+    col_hist_by_feat = st.sidebar.selectbox('Columna - Histplot cuenta bancaria por variable',['country','location_type', 'household_size','relationship_with_head','marital_status','education_level','job_type'])
           
     def graf_hist_by_feature():
         fig = px.histogram(df, x= ['bank_account'], color= col_hist_by_feat, barmode='group', color_discrete_sequence=px.colors.qualitative.Set2).update_xaxes(categoryorder='total descending',)
         fig.update_layout(
             autosize=False,
-            width=1200,
+            width=1000,
             height=600,
             bargap= 0.2,
             title={
