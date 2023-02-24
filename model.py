@@ -128,9 +128,9 @@ elif selected == 'Data visualization':
                 'x':0.5,
                 'xanchor': 'center',
                 'yanchor': 'top'},
-            showlegend=True, legend=dict(title_font_family='Courier New', font=dict(size=10)),
-            legend_title= None,
-            font=dict(size=18))
+            font=dict(size=18),
+            legend=dict(font=dict(size= 20))
+                              )
         fig.update_xaxes(tickfont_size=10, ticks="outside", ticklen=10, tickwidth=5)
         st.plotly_chart(fig)
 
