@@ -136,7 +136,7 @@ elif selected == 'Data visualization':
         fig.update_layout(
             autosize=False,
             width=1000,
-            height=800,
+            height=600,
             bargap=0.2,
             yaxis = dict(tickfont = dict(size=18)),
             xaxis = dict(tickfont = dict(size=18)),
