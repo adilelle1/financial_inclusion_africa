@@ -59,12 +59,6 @@ if selected == 'Home':
 
 
 # Pagina 2 = Graficos
-
-
-        ###  agrandar la leyenda
-        ### agrandar la informacion de los ejes
-        ### agrandar los titulos
-
 elif selected == 'Data visualization':
     st.title('Data visualization')
 
@@ -77,13 +71,6 @@ elif selected == 'Data visualization':
             width=1000,
             height=600,
             bargap= 0.2,
-            title={
-                'text': (f'Distribución: {col_histplot}'),
-                'y':0.95,
-                'x':0.5,
-                'xanchor': 'center',
-                'yanchor': 'top',
-                'font_size':24},
             yaxis = dict(tickfont = dict(size=18)),
             xaxis = dict(tickfont = dict(size=18)),
             showlegend=False,
@@ -170,6 +157,25 @@ elif selected == 'Data visualization':
         boxplot()
         st.header('Heatmap')
         heatmap_plot()
+        
+        st.write('---')
+        st.header('Conclusiones del análisis')
+        st.markdown('Al realizar el análisis de distribuciones y correlación, fue posible observar que:')
+        st.markdown('- Kenya es el país con mayor registro de bancarización.')
+        st.markdown('- Existe una diferencia sustancial entre el tipo de locación (zona rural/urbana) de la persona cuando se trata de no tener acceso al banco. Sin embargo,ésto no se repite para quienes sí tienen cuenta.')
+        st.markdown('- Cuando se trata del género de la persona encuestada, se observa un comportamiento similar al susodicho.')
+        st.markdown('- La edad media de las personas bancarizadas es de 39,59 años, la de aquellas personas que no poseen cuenta, es de 38,67; la mediana, es de 36 y 35.')
+        st.markdown('- Dentro de las variables, la que tiene mayor correlación con la columna target, es la que refiere al acceso de teléfono celular, con un valor de 0.209669; hecho que se explicita al observar la distribución de personas con acceso a celular en relación a estar bancarizadas.')
+        st.write('---')
+
+        st.markdown('''
+        <style>
+        [data-testid="stMarkdownContainer"] ul{
+            list-style-position: inside;
+        }
+        </style>
+        ''', unsafe_allow_html=True)
+
 
 
 
@@ -177,7 +183,7 @@ elif selected == 'Data visualization':
 elif selected == 'Model backstage':
     def model_backstage():
         st.title('Building a classification model')
-        st.write('Para armar el modelo de clasificación, en primer lugar decidimos probar por separado como performaba cada clasificador y hacer una búsqueda de los parámetros óptimos de cada uno.')
+        st.write('Para armar el modelo de clasificación, en primer lugar decidimos probar por separado la performance de cada clasificador y hacer una búsqueda de los parámetros óptimos de cada uno.')
 
         def print_model_comparison():
             comparacion_modelos_data = pd.read_csv('comparacion_modelos.csv', index_col='Unnamed: 0')
@@ -186,8 +192,8 @@ elif selected == 'Model backstage':
         print_model_comparison()
 
 
-        st.write('Vemos que todos los clasificadores tienen métricas similares.')
-        st.write('Para nuestro modelo vamos a tomar dos, en este caso como los mejores fueron Gradient Boosting y XG Boost tomaremos esos.')
+        st.write('Vemos que todos los clasificadores obtuvieron resultados muy similares.')
+        st.write('Para nuestro modelo vamos a tomar dos, como los mejores fueron Gradient Boosting y XG Boost tomaremos esos.')
 
         st.write('Usando Pipeline y GridSearch obtuvimos los siguientes hiperparametros para nuestro modelo:')
         def print_model_params():
