@@ -127,7 +127,7 @@ elif selected == 'Data visualization':
                 'xanchor': 'center',
                 'yanchor': 'top'},
             legend=dict(font=dict(size= 20)),
-            xaxis = dict(font = 20)
+            xaxis = dict(tickfont = dict(size=18))
             )
         fig.update_xaxes(tickfont_size=10, ticks="outside", ticklen=10, tickwidth=5)
         st.plotly_chart(fig)
