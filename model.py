@@ -123,15 +123,15 @@ elif selected == 'Data visualization':
             width=1000,
             height=600,
             bargap= 0.2,
-            title={
-                'text': (f'Cuenta bancaria por {col_hist_by_feat}'),
+            title={'text': (f'Cuenta bancaria por: {col_hist_by_feat}'),
                 'y':0.97,
                 'x':0.5,
                 'xanchor': 'center',
                 'yanchor': 'top'},
-        
+            showlegend=True, legend=dict(title_font_family='Courier New', font=dict(size=10)),
             legend_title= None,
             font=dict(size=18))
+        fig.update_xaxes(tickfont_size=10, ticks="outside", ticklen=10, tickwidth=5)
         st.plotly_chart(fig)
 
 
