@@ -127,8 +127,7 @@ elif selected == 'Data visualization':
                 'xanchor': 'center',
                 'yanchor': 'top'},
             yaxis = dict(tickfont = dict(size=18)),
-            xaxis = dict(tickfont = dict(size=18)),
-            showlegend=False
+            xaxis = dict(tickfont = dict(size=18))
             )
         fig.update_xaxes(tickfont_size=10, ticks="outside", ticklen=10, tickwidth=5)
         st.plotly_chart(fig)
@@ -143,7 +142,7 @@ elif selected == 'Data visualization':
             width=1000,
             height=600,
             title={
-                'text': ('Boxplot: Edades'),
+                'text': (f'Boxplot: {col_box_plot}'),
                 'y':0.95,
                 'x':0.5,
                 'xanchor': 'center',
