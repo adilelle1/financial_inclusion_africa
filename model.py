@@ -115,7 +115,7 @@ elif selected == 'Data visualization':
     col_hist_by_feat = st.sidebar.selectbox('Columna - Histplot cuenta bancaria por variable',['country','location_type', 'household_size','relationship_with_head','marital_status','education_level','job_type'])
           
     def graf_hist_by_feature():
-        fig = px.histogram(df, y= ['bank_account'], color= col_hist_by_feat,  color_discrete_sequence=px.colors.qualitative.Set2).update_xaxes(categoryorder='total descending',)
+        fig = px.histogram(df, x= ['bank_account'], facet_col=['bank_account'], color= col_hist_by_feat,  color_discrete_sequence=px.colors.qualitative.Set2).update_xaxes(categoryorder='total descending',)
         fig.update_layout(
             autosize=False,
             width=1000,
