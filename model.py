@@ -181,7 +181,9 @@ elif selected == 'Data visualization':
         </style>
         ''', unsafe_allow_html=True)
 
+
 #####################################################################################################################################
+
 
 # Pagina 3 = Comparación de modelos
 elif selected == 'Model backstage':
@@ -312,11 +314,11 @@ elif selected == 'Model trial':
             # Prediccion usando el trial data con lo insertado en el form
             if modelo_inclusion.predict(trial_data) == 1:
                 st.write('---')
-                st.markdown('<h4 style="text-align: center">El individuo ya se encuentra bancarizado</h4>',unsafe_allow_html=True)
+                st.markdown('<h4 style="text-align: center; color: Green">El individuo se encuentra bancarizado</h4>',unsafe_allow_html=True)
                 st.write('---')
             else:
                 st.write('---')
-                st.markdown('<h4 style="text-align: center">El individuo no se encuentra bancarizado</h4>', unsafe_allow_html=True)
+                st.markdown('<h4 style="text-align: center; color: Red">El individuo no se encuentra bancarizado</h4>', unsafe_allow_html=True, )
                 st.write('---')
 
     if __name__ == '__main__':
