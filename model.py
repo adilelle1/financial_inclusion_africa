@@ -8,6 +8,10 @@ from streamlit_option_menu import option_menu
 import streamlit.components.v1 as html
 import plotly.express as px
 from sklearn.preprocessing import OneHotEncoder
+from plotly.subplots import make_subplots
+import plotly.graph_objects as go
+
+
 
 
 #1. Import
@@ -23,6 +27,10 @@ with st.sidebar:
         menu_title='Menu',
         options=['Home', 'Data visualization', 'Model backstage', 'Model trial'],
     )
+
+
+#####################################################################################################################################
+
 
 # Pagina 1 = Home
 if selected == 'Home':
@@ -58,6 +66,9 @@ if selected == 'Home':
     st.markdown("\n **job_type** :  Tipo de trabajo del entrevistado")
 
 
+#####################################################################################################################################
+
+
 # Pagina 2 = Graficos
 elif selected == 'Data visualization':
     st.title('Data visualization')
@@ -80,9 +91,7 @@ elif selected == 'Data visualization':
 
     # pie chart
     col_piechart = st.sidebar.selectbox('Columna - Pie chart',['bank_account','gender_of_respondent','cellphone_access'])
-
     def graf_pie():
-
         fig = px.pie(df, names=col_piechart, color=col_piechart, color_discrete_sequence=px.colors.qualitative.Set2, hole=.5)
         fig.update_layout(
             autosize=False,
@@ -95,7 +104,6 @@ elif selected == 'Data visualization':
 
     # Histplot by feature
     col_hist_by_feat = st.sidebar.selectbox('Columna - Histplot cuenta bancaria por variable',['country','location_type', 'household_size','relationship_with_head','marital_status','education_level','job_type'])
-          
     def graf_hist_by_feature():
         fig = px.histogram(df, x=['bank_account'], color= col_hist_by_feat, barmode='group',  color_discrete_sequence=px.colors.qualitative.Set2).update_xaxes(categoryorder='total descending',)
         fig.update_layout(
@@ -119,7 +127,6 @@ elif selected == 'Data visualization':
             height=600,
             legend=dict(font=dict(size= 18)),
             xaxis = dict(showticklabels = True, tickfont = dict(size = 16))
-
             )
         st.plotly_chart(fig)
 
@@ -143,8 +150,6 @@ elif selected == 'Data visualization':
             showlegend=False
             )
         st.plotly_chart(fig)
-
-    
 
     if __name__ == '__main__':
         st.header('Distribución')
@@ -176,26 +181,42 @@ elif selected == 'Data visualization':
         </style>
         ''', unsafe_allow_html=True)
 
-
-
+#####################################################################################################################################
 
 # Pagina 3 = Comparación de modelos
 elif selected == 'Model backstage':
     def model_backstage():
         st.title('Building a classification model')
-        st.write('Para armar el modelo de clasificación, en primer lugar decidimos probar por separado la performance de cada clasificador y hacer una búsqueda de los parámetros óptimos de cada uno.')
+        st.write('Luego de entender los datos con los que nos encontramos, para avanzar en el armado del modelo tuvimos que sobreponernos a diferentes cuestiones que surgieron a lo largo de todo el trbaajo.')
+        st.write('En esta sección repasaremos estas cuestiones más a detalle para explicar como logramos construir nuestro modelo.')
 
+        st.header('1. Preprocesamiento')
+        st.write('El primer paso para crear el modelo fue el de crear un paso del Pipeline para transformar los datos.')
+        st.write('Nos encontramos con un dataset con un trabajo de preprocesamiento ya realizado, sin datos faltantes.')
+        st.write('Sin embargo, al tener columnas categóricas y numéricas fue necesario realizar un paso de preprocesamiento diferente para cada tipo de dato.')
+        st.write('Es por eso que fue necesario utilizar la clase ColumnTransformer de la librería Sklearn, con dos pipelines dentro.')
+        st.subheader('ColumnTransformer:')
+        st.image('columntransformer.png')
+
+        
+        st.header('2. Modelo a elegir')
+        st.write('En primer lugar decidimos probar por separado la performance de cada clasificador y hacer una búsqueda de los parámetros óptimos de cada uno.')
+        
         def print_model_comparison():
             comparacion_modelos_data = pd.read_csv('comparacion_modelos.csv', index_col='Unnamed: 0')
             comparacion_modelos_data_sorted = comparacion_modelos_data.sort_values(by='accuracy', ascending=False)
             return st.dataframe(comparacion_modelos_data_sorted)
         print_model_comparison()
 
-
         st.write('Vemos que todos los clasificadores obtuvieron resultados muy similares.')
         st.write('Para nuestro modelo vamos a tomar dos, como los mejores fueron Gradient Boosting y XG Boost tomaremos esos.')
 
-        st.write('Usando Pipeline y GridSearch obtuvimos los siguientes hiperparametros para nuestro modelo:')
+        st.header('3. Modelo final con eliminación de features')
+        st.write('En el paso anterior definimos los modelos a utilizar, y usando GridSearch, sus hiperparámetros ideales.')
+        
+        st.write('A partir de eso, agregamos a la búsqueda la cantidad de variables ideales para el modelo usando la clase RFE de la librería Sklearn.')
+        
+        st.write('Obtuvimos los siguientes hiperparámetros para nuestro modelo:')
         def print_model_params():
             moodel_params_data = pd.read_csv('model_params.csv', index_col='Unnamed: 0')
             return st.dataframe(moodel_params_data)
@@ -214,9 +235,33 @@ elif selected == 'Model backstage':
         st.header('Curva ROC-AUC:')
         st.image('roc_auc.png')
 
+
+        st.header('4. Desbalanceo de variable objetivo')
+        st.write('Distribución de clases de Bank Account:')
+        fig = go.Figure()
+        fig.add_trace(go.Pie(labels = df['bank_account'], hole = 0.6,))
+        st.plotly_chart(fig)
+
+        st.write('Al encontrarnos con nuestra variable objetivo fuertemente desbalanceada decidimos probar usando técnicas de balanceo de clases:')
+        st.subheader('- Under sampling')
+        st.write('Usamos la clase RandomUnderSampler de la librería Sklearn para realizar un resampleo y entrenar el modelo con un subset de datos descartando casos de la clase mayoritaria.')
+        st.write('El resultado fue el siguiente:')
+        st.dataframe(pd.read_csv('model_us_scores.csv', index_col='Unnamed: 0'))
+        st.image('conf_matrix_us.png')
+
+        
+        st.subheader('- Over sampling')
+        st.write('Usamos la clase RandomOverSampler de la librería Sklearn para realizar nuevamente un resampleo, pero esta vez aumentando la representación de la clase minoritaria.')
+        st.write('El resultado fue el siguiente:')
+        st.dataframe(pd.read_csv('model_os_scores.csv', index_col='Unnamed: 0'))
+        st.image('conf_matrix_os.png')
+
+        
     if __name__ == '__main__':
         model_backstage()
 
+
+#####################################################################################################################################
 
 
 # Pagina 4 = Modelo
@@ -251,8 +296,6 @@ elif selected == 'Model trial':
             data= pd.DataFrame(data_inputs, index=[0])
             return data
 
-
-
     def print_results():
         country, location_type, cellphone_access, household_size, age_of_respondent, gender_of_respondent, relationship_with_head, marital_status, education_level, job_type, button = inputs()
         if button:
@@ -275,9 +318,6 @@ elif selected == 'Model trial':
                 st.write('---')
                 st.markdown('<h4 style="text-align: center">El individuo no se encuentra bancarizado</h4>', unsafe_allow_html=True)
                 st.write('---')
-
-                
-
 
     if __name__ == '__main__':
         print_results()
