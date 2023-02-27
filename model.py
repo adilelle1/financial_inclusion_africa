@@ -85,7 +85,7 @@ elif selected == 'Data visualization':
         fig = px.histogram(df, x= col_histplot, color=col_histplot, color_discrete_sequence=px.colors.qualitative.Set2).update_xaxes(categoryorder='total descending')
         fig.update_layout(
             autosize=False,
-            width=1000,
+            width=900,
             height=600,
             bargap= 0.2,
             yaxis = dict(tickfont = dict(size=18)),
@@ -101,7 +101,7 @@ elif selected == 'Data visualization':
         fig = px.pie(df, names=col_piechart, color=col_piechart, color_discrete_sequence=px.colors.qualitative.Set2, hole=.5)
         fig.update_layout(
             autosize=False,
-            width=1000,
+            width=900,
             height=600,
             legend=dict(font=dict(size= 18))
         )
@@ -114,7 +114,7 @@ elif selected == 'Data visualization':
         fig = px.histogram(df, x=['bank_account'], color= col_hist_by_feat, barmode='group',  color_discrete_sequence=px.colors.qualitative.Set2).update_xaxes(categoryorder='total descending',)
         fig.update_layout(
             autosize=False,
-            width=1000,
+            width=900,
             height=600,
             bargap= 0.2,
             legend=dict(font=dict(size= 18)),
@@ -129,7 +129,7 @@ elif selected == 'Data visualization':
         fig = px.box(df, x=col_box_plot, color='bank_account')
         fig.update_layout(
             autosize=False,
-            width=1000,
+            width=900,
             height=600,
             legend=dict(font=dict(size= 18)),
             xaxis = dict(showticklabels = True, tickfont = dict(size = 16))
@@ -148,7 +148,7 @@ elif selected == 'Data visualization':
         fig = px.imshow(data.corr(), text_auto=True, aspect="auto", color_continuous_scale='darkmint').update_xaxes(tickangle=45)
         fig.update_layout(
             autosize=False,
-            width=1000,
+            width=900,
             height=600,
             bargap=0.2,
             yaxis = dict(tickfont = dict(size=18)),
