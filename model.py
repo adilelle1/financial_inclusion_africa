@@ -65,6 +65,12 @@ if selected == 'Home':
     st.markdown("\n **education_level** :  Nivel de educación")
     st.markdown("\n **job_type** :  Tipo de trabajo del entrevistado")
 
+    st.header('Idea de negocio')
+    st.write('Nuestro modelo sería de gran utilidad para aquellas instituciones que busquen incentivar la bancarización en la sociedad, como podrían ser entidades bancarias o el Estado de un país.')
+    st.write('En ese sentido, el foco para medir la performance de nuestro modelo es predecir con poco error los falsos positivos y con mucho acierto los verdaderos negativos.')
+    st.write('Es decir, por un lado utilizaremos la métrica de "Precision" para ver qué tan "preciso" es el clasificador al predecir las instancias positivas (bancarizados), y por otro lado, la "Specificity" o "True Negative Rate" para medir la capacidad de detectar los verdaderos negativos (no bancarizados) sobre el total de casos que son negativos.')
+    
+
 
 #####################################################################################################################################
 
@@ -213,6 +219,7 @@ elif selected == 'Model backstage':
         st.write('Vemos que todos los clasificadores obtuvieron resultados muy similares.')
         st.write('Para nuestro modelo vamos a tomar dos, como los mejores fueron Gradient Boosting y XG Boost tomaremos esos.')
 
+
         st.header('3. Modelo final con eliminación de features')
         st.write('En el paso anterior definimos los modelos a utilizar, y usando GridSearch, sus hiperparámetros ideales.')
         
@@ -232,7 +239,6 @@ elif selected == 'Model backstage':
 
         st.header('Matriz de confusión:')
         st.image('conf_matrix.png')
-
 
         st.header('Curva ROC-AUC:')
         st.image('roc_auc.png')
