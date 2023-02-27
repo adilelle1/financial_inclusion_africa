@@ -158,11 +158,11 @@ elif selected == 'Data visualization':
         st.plotly_chart(fig)
 
     if __name__ == '__main__':
-        st.header('Distribución')
+        st.header('Histplot')
         graf_hist()
         st.header('Pie chart')
         graf_pie()
-        st.header('Distribución de cuenta bancaria por feature')
+        st.header('Histplot bank account by feature')
         graf_hist_by_feature()
         st.header('Boxplot')
         boxplot()
