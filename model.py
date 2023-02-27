@@ -173,10 +173,10 @@ elif selected == 'Data visualization':
         st.header('Conclusiones del análisis')
         st.markdown('Al realizar el análisis de distribuciones y correlación, fue posible observar que:')
         st.markdown('- Kenya es el país con mayor registro de bancarización.')
-        st.markdown('- Existe una diferencia sustancial entre el tipo de locación (zona rural/urbana) de la persona cuando se trata de no tener acceso al banco. Sin embargo,ésto no se repite para quienes sí tienen cuenta.')
+        st.markdown('- Existe una diferencia sustancial entre el tipo de locación (zona rural/urbana) de la persona cuando se trata de no tener acceso al banco. Sin embargo, ésto no se repite para quienes sí tienen cuenta.')
         st.markdown('- Cuando se trata del género de la persona encuestada, se observa un comportamiento similar al susodicho.')
-        st.markdown('- La edad media de las personas bancarizadas es de 39,59 años, la de aquellas personas que no poseen cuenta, es de 38,67; la mediana, es de 36 y 35.')
-        st.markdown('- Dentro de las variables, la que tiene mayor correlación con la columna target, es la que refiere al acceso de teléfono celular, con un valor de 0.209669; hecho que se explicita al observar la distribución de personas con acceso a celular en relación a estar bancarizadas.')
+        st.markdown('- La edad media de las personas bancarizadas es de 40 años, la de aquellas personas que no poseen cuenta, es de 39; la mediana, es de 36 y 35.')
+        st.markdown('- Dentro de las variables, la que tiene mayor correlación con la columna target, es la que refiere al acceso de teléfono celular, con un valor de 0.21; hecho que se explicita al observar la distribución de personas con acceso a celular en relación a estar bancarizadas.')
         st.write('---')
 
         st.markdown('''
@@ -216,26 +216,24 @@ elif selected == 'Model backstage':
             return st.dataframe(comparacion_modelos_data_sorted)
         print_model_comparison()
 
-        st.write('Vemos que todos los clasificadores obtuvieron resultados muy similares.')
-        st.write('Para nuestro modelo vamos a tomar dos, como los mejores fueron Gradient Boosting y XG Boost tomaremos esos.')
+        st.write('Vemos que todos los clasificadores obtuvieron resultados muy similares en cuanto al accuracy score, sin embargo, Random Forest Classifier es quien tiene mejores métricas de precisión y especificidad.')
+        st.write('Entonces, para nuestro modelo vamos a elegir ese clasificador.')
 
 
         st.header('3. Modelo final con eliminación de features')
-        st.write('En el paso anterior definimos los modelos a utilizar, y usando GridSearch, sus hiperparámetros ideales.')
+        st.write('En el paso anterior definimos el modelo a utilizar, y usando GridSearch, sus hiperparámetros ideales.')
         
         st.write('A partir de eso, agregamos a la búsqueda la cantidad de variables ideales para el modelo usando la clase RFE de la librería Sklearn.')
         
-        st.write('Obtuvimos los siguientes hiperparámetros para nuestro modelo:')
-        def print_model_params():
-            moodel_params_data = pd.read_csv('model_params.csv', index_col='Unnamed: 0')
-            return st.dataframe(moodel_params_data)
-        print_model_params()
-
         st.write('Los resultados del modelo de clasificación fueron los siguientes:')
         def print_model_scores():
             moodel_scores_data = pd.read_csv('model_scores.csv', index_col='Unnamed: 0')
             return st.dataframe(moodel_scores_data)
         print_model_scores()
+
+        st.markdown('**Recordamos la hipótesis nula del modelo:**')
+        st.markdown(f'No bancarizados: **{round(df.bank_account.value_counts(normalize=True)[0]*100, 2)}%**')
+        st.markdown(f'Bancarizados: **{round(df.bank_account.value_counts(normalize=True)[1]*100, 2)}%**')
 
         st.header('Matriz de confusión:')
         st.image('conf_matrix.png')
