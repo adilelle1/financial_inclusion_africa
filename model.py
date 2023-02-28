@@ -263,7 +263,7 @@ elif selected == 'Model backstage':
         st.image('conf_matrix_os.png')
 
         st.header('5. Resumen del armado del modelo')
-        st.image('diagrama_conclusiones.jpeg')
+        st.image('diagrama_conclusiones.png')
         
     if __name__ == '__main__':
         model_backstage()
