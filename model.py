@@ -194,9 +194,9 @@ elif selected == 'Data visualization':
 # Pagina 3 = Comparación de modelos
 elif selected == 'Model backstage':
     def model_backstage():
-        st.title('Building a classification model')
-        st.write('Luego de entender los datos con los que nos encontramos, para avanzar en el armado del modelo tuvimos que sobreponernos a diferentes cuestiones que surgieron a lo largo de todo el trbaajo.')
-        st.write('En esta sección repasaremos estas cuestiones más a detalle para explicar como logramos construir nuestro modelo.')
+        st.title('Construyendo un modelo de clasificación')
+        st.write('Luego de entender los datos con los que nos encontramos, para avanzar en el armado del modelo tuvimos que sobreponernos a diferentes cuestiones que surgieron a lo largo de todo el trabajo.')
+        st.write('En esta sección repasaremos estas cuestiones más a detalle para explicar cómo logramos construir nuestro modelo.')
 
         st.header('1. Preprocesamiento')
         st.write('El primer paso para crear el modelo fue el de crear un paso del Pipeline para transformar los datos.')
