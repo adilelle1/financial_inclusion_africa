@@ -262,7 +262,7 @@ elif selected == 'Model backstage':
         st.dataframe(pd.read_csv('model_os_scores.csv', index_col='Unnamed: 0'))
         st.image('conf_matrix_os.png')
 
-        st.header('5. Conclusiones finales')
+        st.header('5. Resumen del armado del modelo')
         st.image('diagrama_conclusiones.jpeg')
         
     if __name__ == '__main__':
