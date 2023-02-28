@@ -34,8 +34,8 @@ with st.sidebar:
 
 # Pagina 1 = Home
 if selected == 'Home':
-    st.title('Financial inclusion in Africa')
-    st.write('Predict who in Africa is most likely to have a bank account')
+    st.title('Inclusión financiera en Africa')
+    st.write('Predecir quién en Africa es más probable que tenga una cuenta bancaria.')
     st.image('inclusion_financiera.png')
 
     st.header('Problemática y objetivos')
