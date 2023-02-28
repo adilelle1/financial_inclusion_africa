@@ -36,7 +36,7 @@ with st.sidebar:
 if selected == 'Home':
     st.title('Financial inclusion in Africa')
     st.write('Predict who in Africa is most likely to have a bank account')
-    st.image('inclusion_financiera.png')
+    # st.image('inclusion_financiera.png')
 
     st.header('Problemática y objetivos')
     st.write('La inclusión financiera refiere al acceso que tienen las personas y las empresas a diversos productos y servicios financieros útiles y asequibles que atienden sus necesidades. Representa una preocupación global, ya que se considera como elemento facilitador para reducir la pobreza extrema y promover el crecimiento y desarrollo económico.')
