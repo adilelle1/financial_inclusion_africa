@@ -43,7 +43,7 @@ if selected == 'Home':
     st.write('El acceso a cuentas bancarias impacta tanto en el desarrollo humano como en el ámbito económico, ya que permite a los hogares ahorrar, realizar pagos, acceder a créditos, financiamiento, entre otros; al mismo tiempo que ayuda a las empresas a aumentar su solvencia crediticia y mejorar su acceso a préstamos, seguros y servicios relacionados.')
     st.write('En África, la incusión financiera constituye uno de los principales problemas, ya que en una población compuesta de alrededor de 172,19 millones de personas (The World Bank Group , 2020) en 4 países (Kenia, Ruanda, Tanzania y Uganda), solo el 14% de la población adulta, representada por 9,1 millones, tiene este acceso (Zindi).')
     st.write('Por esta razón, la Nueva Alianza para el Desarrollo de África (NEPAD) ha involucrado a representantes del continente para encontrar soluciones que podrían mejorar la inclusión financiera y el bienestar de las personas que viven en África, utilizando el modelo empresarial cooperativo.')
-    st.write('En este trabajo buscamos predecir quién es más pobrable que tenga una cuenta bancaria, lo que potencialmente podría ayudar a entidades bancarias a encontrar potenciales clientes.')
+    st.write('En este trabajo buscamos predecir quién es más pobrable que tenga una cuenta bancaria, lo que potencialmente podría ayudar a entidades bancarias a encontrar potenciales clientes y a la sociedad en general a una mejor calidad de vida.')
     
     st.header('Dataset')
     st.write('El conjunto de datos utilizado, ha sido extraído de Zindi, una red profesional para científicos de datos en África; constituyen los resultados de las encuestas de Finscope de 2016 a 2018.')
