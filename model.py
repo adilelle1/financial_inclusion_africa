@@ -267,6 +267,7 @@ elif selected == 'Model backstage':
 
         st.header('6. Conclusiones del modelo')
         st.write('En el armado del proyecto, pensamos el modelo como un producto para que bancos o entidades financieras encuentren nuevos potenciales clientes a quienes venderles sus servicios. Es por eso que el principal foco de las métricas del modelo es reducir los falsos positivos, es decir la predicción incorrecta de personas no bancarizadas.')
+        st.write('Por este motivo, al comparar el modelo utilizando resampleo, como vemos que los falsos positivos aumentan decidimos mantener el modelo con clases desbalanceadas.')
         st.write('Como vemos en la matriz de confusión, el objetivo de falsos positivos se cumple correctamente. Sin embargo, encontramos una gran cantidad de falsos negativos, es decir que el modelo no detecta con gran acierto individuos que ya poseen cuenta bancaria.')
         st.write('Consideramos que este es el punto a mejorar del modelo, ya que de no poder predecir correctamente la clase "Bancarizados" (individuos con cuenta bancaria), armar un modelo para captar nuevos clientes pierde sentido.')
 
